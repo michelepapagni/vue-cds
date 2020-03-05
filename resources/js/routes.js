@@ -1,4 +1,5 @@
 import Vue from "vue";
+//Per usarlo eseguire: npm install vue-router
 import VueRouter from "vue-router";
 
 import Home from "./pages/Home";
