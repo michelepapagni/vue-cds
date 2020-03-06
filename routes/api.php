@@ -14,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('message', function() {
-    return response()->json([
-        'message' => 'Ciao classe 8'
-    ]);
-});
+Route::get('cds', 'Api\CdController@index');
 

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="music-cds-container">
-      <music-cd v-for="(cd, index) in cds" :key="index" :cd="cd"></music-cd>
+      <music-cd @pippo="removeCd" v-for="(cd, index) in cds" :key="index" :cd="cd"></music-cd>
     </div>
   </div>
 </template>
@@ -21,11 +21,14 @@ export default {
   mounted() {
     let self = this;
 
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then(function(response) {
-        self.cds = response.data.response;
-      });
+    axios.get("/api/cds").then(function(response) {
+      self.cds = response.data;
+    });
+  },
+  methods: {
+    removeCd(cd) {
+      console.log("rimuovo cd", cd);
+    }
   }
 };
 </script>

@@ -3,12 +3,19 @@
     {{ cd.title }} - {{ cd.author }}
     <strong>{{ cd.year }}</strong>
     <img :src="cd.poster" />
+
+    <button @click="chiamiamoPapa">Clicca</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["cd"]
+  props: ["cd"],
+  methods: {
+    chiamiamoPapa() {
+      this.$emit("pippo", this.cd);
+    }
+  }
 };
 </script>
 

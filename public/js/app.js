@@ -1916,8 +1916,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["cd"]
+  props: ["cd"],
+  methods: {
+    chiamiamoPapa: function chiamiamoPapa() {
+      this.$emit("pippo", this.cd);
+    }
+  }
 });
 
 /***/ }),
@@ -1952,9 +1959,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var self = this;
-    axios.get("https://flynn.boolean.careers/exercises/api/array/music").then(function (response) {
-      self.cds = response.data.response;
+    axios.get("/api/cds").then(function (response) {
+      self.cds = response.data;
     });
+  },
+  methods: {
+    removeCd: function removeCd(cd) {
+      console.log("rimuovo cd", cd);
+    }
   }
 });
 
@@ -38205,7 +38217,9 @@ var render = function() {
     ),
     _c("strong", [_vm._v(_vm._s(_vm.cd.year))]),
     _vm._v(" "),
-    _c("img", { attrs: { src: _vm.cd.poster } })
+    _c("img", { attrs: { src: _vm.cd.poster } }),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.chiamiamoPapa } }, [_vm._v("Clicca")])
   ])
 }
 var staticRenderFns = []
@@ -38235,7 +38249,11 @@ var render = function() {
       "div",
       { staticClass: "music-cds-container" },
       _vm._l(_vm.cds, function(cd, index) {
-        return _c("music-cd", { key: index, attrs: { cd: cd } })
+        return _c("music-cd", {
+          key: index,
+          attrs: { cd: cd },
+          on: { pippo: _vm.removeCd }
+        })
       }),
       1
     )
